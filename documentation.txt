@@ -1,0 +1,128 @@
+# API Documentation for User Authentication System
+
+## **Base URL**
+`http://localhost:3500/api`
+
+## **Authentication Flow**
+1. **User Registration** → `/create`
+2. **User Login** → `/login`
+3. **Get User Details** → `/getuser` (Requires Authentication)
+
+---
+
+## **1. User Registration**
+### **Endpoint:**
+`POST /api/create`
+
+### **Description:**
+Creates a new user account.
+
+### **Headers:**
+```json
+Content-Type: application/json
+```
+
+### **Request Body:**
+```json
+{
+  "name": "Piyush Agarwal",
+  "email": "piyush@example.com",
+  "password": "your_secure_password"
+  "address":"****************"
+}
+```
+
+### **Response:**
+**Success (201 Created):**
+```json
+{
+  "message": "Account Created Successfully,Login now",
+  
+}
+```
+**Error (400 Bad Request):**
+```json
+{
+  "error": "Email already exists"
+}
+```
+
+---
+
+## **2. User Login**
+### **Endpoint:**
+`POST /api/login`
+
+### **Description:**
+Authenticates an existing user and returns a token.
+
+### **Headers:**
+```json
+Content-Type: application/json
+```
+
+### **Request Body:**
+```json
+{
+  "email": "piyush@example.com",
+  "password": "your_secure_password"
+}
+```
+
+### **Response:**
+**Success (200 OK):**
+```json
+{message:{
+        
+            "userid":user._id,
+            "accessToken":accessToken
+}
+}
+```
+**Error (401 Unauthorized):**
+```json
+{
+  "error": "Invalid credentials"
+}
+```
+
+---
+
+## **3. Get User Details** (Protected Route)
+### **Endpoint:**
+`GET /api/getuser`
+
+### **Description:**
+Fetches user details. Requires authentication.
+
+### **Headers:**
+```json
+{
+  "Authorization": "Bearer your_jwt_token"
+}
+```
+
+### **Response:**
+**Success (200 OK):**
+```json
+{
+  "id": "12345",
+  "name": "Piyush",
+  "email": "piyush@example.com"
+  "address":"***********"
+}
+```
+**Error (401 Unauthorized):**
+```json
+{
+  "error": "Unauthorized: No token provided"
+}
+```
+
+---
+
+## **Notes:**
+- Ensure to include the correct `Authorization` header when accessing protected routes.
+- Change the base URL to match your deployment environment when using this API in production.
+
+
