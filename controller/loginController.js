@@ -29,8 +29,7 @@ const handleLogin=async(req,res)=>{
         res.cookie('jwt',refreshToken,{httpOnly:false,secure:true,sameSite:'None',maxAge:24*60*60})
         res.status(200).send({message:{
         
-            "name":user.name,
-            "email":user.email,
+        
             "userid":user._id,
             "accessToken":accessToken
         }
