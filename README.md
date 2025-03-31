@@ -34,7 +34,8 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 Copy the generated token and store it in the `.env` file as:
 ```sh
-TOKEN=your_generated_secret_token
+ACCESS_TOKEN_URL=your_generated_secret_token
+REFRESH_TOKEN_URL=your_generated_secret_token
 ```
 
 ### 4. Start the Application
